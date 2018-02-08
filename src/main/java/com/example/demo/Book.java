@@ -12,15 +12,31 @@ public class Book {
     private long id;
 
     private String title;
-    private String author;
-    private int yop; /*year of publication*/
-    private String isbn; /*stored as string since user may inter dashes*/
-    private String image; /*Will contain a URL*/
+    /*private int yop; *//*year of publication*//*
+    private String isbn; *//*stored as string since user may enter dashes*//*
+    private String image; *//*Will contain a URL*//*
+    Boolean isBorrowed = false; *//*all books begin as not checked out*/
 
     public Book() {
     }
 
     public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /*public long getId() {
         return id;
     }
 
@@ -66,5 +82,5 @@ public class Book {
 
     public void setImage(String image) {
         this.image = image;
-    }
+    }*/
 }
