@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Book List</title>
+</head>
+<body>
+<h1>You have reached Book List</h1>
+
+<div    th:each="book : ${books}">
+    <h4 th:inline="text"> Sample text [[${book.title}]] </h4>
+    <!--<h4 th:inline="text"> Sample text [[${book.isAvailable}]] </h4>-->
+
+
+
+
+</div>
+</body>
+</html>
