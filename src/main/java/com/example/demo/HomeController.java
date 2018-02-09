@@ -57,7 +57,12 @@ public class HomeController {
 
     @PostMapping("/confBorrowed")
     public String confBorrowed(@Valid @ModelAttribute("book") Book book, BindingResult result){
+        if(result.hasErrors()){
+            return "borrowedList";
+        }
         book.setIsBorrowed(TRUE);
+        bookRepository.save(book);
+
         return "ConfirmedBorrowed";
     }
 
