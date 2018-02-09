@@ -33,13 +33,20 @@
 <h1>You have reached list of available books</h1>
 
 <div    th:each="book : ${books}">
-    <h4 th:inline="text"> Title: [[${book.title}]] </h4> <input type="Return" value="Return" />
-    <h4 th:inline="text"> Author: [[${book.author}]] </h4> <input type="Return" value="Return" />
-    <h4 th:inline="text"> Year of Publication: [[${book.yop}]] </h4> <input type="Return" value="Return" />
-    <h4 th:inline="text"> Isbn#: [[${book.isbn}]] </h4> <input type="Return" value="Return" />
-    <h4 th:inline="text"> Image: [[${book.image}]] </h4> <input type="Return" value="Return" />
-    <!--<h4 th:inline="text"> Sample text [[${book.status}]] </h4>-->
+    <h4 th:inline="text"> Title: [[${book.title}]] </h4>
+    <h4 th:inline="text"> Author: [[${book.author}]] </h4>
+    <h4 th:inline="text"> Year of Publication: [[${book.yop}]] </h4>
+    <h4 th:inline="text"> Isbn#: [[${book.isbn}]] </h4>
+    <h4 th:inline="text"> Image: [[${book.image}]] </h4>
+    <h4 th:inline="text"> Borrowed? [[${book.isBorrowed}]] </h4>
+    <form action="#"
+          th:action="@{/confReturned}"
+          th:object="${book}"
+          method="post">
 
+        <input type="submit" value="Return"/>
+
+    </form>
 
 
 

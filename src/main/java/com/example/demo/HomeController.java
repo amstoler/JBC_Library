@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.util.ArrayList;
 
+import static java.lang.Boolean.TRUE;
+
 @Controller
 public class HomeController {
 
@@ -47,15 +49,30 @@ public class HomeController {
     }
 
     @RequestMapping("/borrowed")
-    public String showBorrowed(){
+    public String showBorrowed(Model model){
+        model.addAttribute("books", bookRepository.findAll());
 
         return "borrowedList";
     }
 
+    @PostMapping("/confBorrowed")
+    public String confBorrowed(@Valid @ModelAttribute("book") Book book, BindingResult result){
+        book.setIsBorrowed(TRUE);
+        return "ConfirmedBorrowed";
+    }
+
+
     @RequestMapping("/returned")
-    public String showReturned(){
+    public String showReturned(Model model){
+        model.addAttribute("books", bookRepository.findAll());
 
         return "returnedList";
+    }
+
+    @PostMapping("/confReturned")
+    public String confReturned(){
+
+        return "ConfirmedReturned";
     }
 
 

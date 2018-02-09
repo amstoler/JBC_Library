@@ -30,7 +30,7 @@ public class Book {
 
     private String isbn; //*stored as string since user may enter dashes*//*
     private String image; //*Will contain a URL*//*
-    Boolean isBorrowed = false; //*Status of all books begin as not checked out*/
+    private Boolean isBorrowed = false; //*Status of all books begin as not checked out*/
 
 
     public Book() {
@@ -84,11 +84,11 @@ public class Book {
         this.image = image;
     }
 
-    public Boolean getBorrowed() {
+    public Boolean getIsBorrowed() {
         return isBorrowed;
     }
 
-    public void setBorrowed(Boolean borrowed) {
-        isBorrowed = borrowed;
+    public void setIsBorrowed(Boolean borrowed) {
+        this.isBorrowed = borrowed;
     }
 }

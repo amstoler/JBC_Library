@@ -35,21 +35,27 @@
 <h1>You have reached list of borrowed books</h1>
 
 <div    th:each="book : ${books}">
-    <h4 th:inline="text"> Title: [[${book.title}]] </h4> <input type="Borrow" value="Borrow" />
-    <h4 th:inline="text"> Author: [[${book.author}]] </h4> <input type="Borrow" value="Borrow" />
-    <h4 th:inline="text"> Year of Publication: [[${book.yop}]] </h4> <input type="Borrow" value="Borrow" />
-    <h4 th:inline="text"> Isbn#: [[${book.isbn}]] </h4> <input type="Borrow" value="Borrow" />
-    <h4 th:inline="text"> Image: [[${book.image}]] </h4> <input type="Borrow" value="Borrow" />
-    <!--<h4 th:inline="text"> Sample text [[${book.status}]] </h4>-->
+    <h4 th:inline="text"> Title: [[${book.title}]] </h4>
+    <h4 th:inline="text"> Author: [[${book.author}]] </h4>
+    <h4 th:inline="text"> Year of Publication: [[${book.yop}]] </h4>
+    <h4 th:inline="text"> Isbn#: [[${book.isbn}]] </h4>
+    <h4 th:inline="text"> Image: [[${book.image}]] </h4>
+    <h4 th:inline="text"> Borrowed? [[${book.isBorrowed}]] </h4>
 
+    <form action="#"
+          th:action="@{/confBorrowed}"
+          th:object="${book}"
+          method="post">
 
-
-
+        <input type="submit" value="Borrow"/>
+        <!--<h4 th:inline="text"> Sample text [[${book.status}]] </h4>-->
+    </form>
 </div>
 
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
