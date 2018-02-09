@@ -1,9 +1,14 @@
 package com.example.demo;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -11,11 +16,22 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
+    @Size(min=1)
     private String title;
-    /*private int yop; *//*year of publication*//*
-    private String isbn; *//*stored as string since user may enter dashes*//*
-    private String image; *//*Will contain a URL*//*
-    Boolean isBorrowed = false; *//*all books begin as not checked out*/
+
+    @NotNull
+    @Size(min=1)
+    private String Author;
+
+    @NotNull
+    @Min(1600)
+    private int yop; //*year of publication*//*
+
+    private String isbn; //*stored as string since user may enter dashes*//*
+    private String image; //*Will contain a URL*//*
+    Boolean isBorrowed = false; //*Status of all books begin as not checked out*/
+
 
     public Book() {
     }
@@ -36,28 +52,12 @@ public class Book {
         this.title = title;
     }
 
-    /*public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
-        return author;
+        return Author;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        Author = author;
     }
 
     public int getYop() {
@@ -82,5 +82,13 @@ public class Book {
 
     public void setImage(String image) {
         this.image = image;
-    }*/
+    }
+
+    public Boolean getBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(Boolean borrowed) {
+        isBorrowed = borrowed;
+    }
 }

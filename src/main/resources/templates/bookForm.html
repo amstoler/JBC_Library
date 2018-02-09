@@ -3,8 +3,34 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Book Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 </head>
 <body>
+<!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add">Add Book</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/bookList">Book List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/returned">Available Books</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/borrowed">Borrowed Books</a>
+        </li>
+
+    </ul>
+
+</nav>
 
 <h1>Book Form</h1>
 
@@ -18,11 +44,33 @@
     <span th:if="${#fields.hasErrors('title')}"
           th:errors="*{title}"></span><br />
 
+    Author:<input type="text" th:field="*{author}" />
+    <span th:if="${#fields.hasErrors('author')}"
+          th:errors="*{author}"></span><br />
+
+    Year of Publication:<input type="text" th:field="*{yop}" />
+    <span th:if="${#fields.hasErrors('yop')}"
+          th:errors="*{yop}"></span><br />
+
+    ISBN#:<input type="text" th:field="*{isbn}" />
+    <span th:if="${#fields.hasErrors('isbn')}"
+          th:errors="*{isbn}"></span><br />
+
+    Image:<input type="text" th:field="*{image}" />
+    <span th:if="${#fields.hasErrors('image')}"
+          th:errors="*{image}"></span><br />
+
+    <!--Status:<input type="text" th:field="*{isBorrowed}" />
+    <span th:if="${#fields.hasErrors('isBorrowed')}"
+          th:errors="*{isBorrowed}"></span><br />-->
+
     <input type="submit" value="Submit" />
 
 
 
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </form>
 </body>

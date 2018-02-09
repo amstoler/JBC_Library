@@ -45,13 +45,13 @@ public class HomeController {
         return "redirect:/add";
     }
 
-    @RequestMapping("/borrow")
+    @RequestMapping("/borrowed")
     public String showBorrowed(){
 
         return "borrowedList";
     }
 
-    @RequestMapping("/return")
+    @RequestMapping("/returned")
     public String showReturned(){
 
         return "returnedList";
