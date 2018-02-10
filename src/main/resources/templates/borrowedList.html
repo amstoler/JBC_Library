@@ -13,9 +13,7 @@
 
     <!-- Links -->
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/add">Add Book</a>
         </li>
@@ -23,10 +21,10 @@
             <a class="nav-link" href="/bookList">Book List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/returned">Available Books</a>
+            <a class="nav-link" href="/return">Return This Book</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/borrowed">Borrowed Books</a>
+            <a class="nav-link" href="/borrow">Borrow This Book</a>
         </li>
 
     </ul>
@@ -34,7 +32,7 @@
 </nav>
 <h1>You have reached list of borrowed books</h1>
 
-<div    th:each="book : ${books}">
+<div    th:each="book : ${availablebooks}">
     <h4 th:inline="text"> Title: [[${book.title}]] </h4>
     <h4 th:inline="text"> Author: [[${book.author}]] </h4>
     <h4 th:inline="text"> Year of Publication: [[${book.yop}]] </h4>
@@ -42,14 +40,16 @@
     <h4 th:inline="text"> Image: [[${book.image}]] </h4>
     <h4 th:inline="text"> Borrowed? [[${book.isBorrowed}]] </h4>
 
-    <form action="#"
-          th:action="@{/confBorrowed}"
+    <a th:href="@{/confBorrowed/{id}(id=${book.id})}">Borrow</a>
+
+    <!--<form action="#"
+    th:action="@{/confBorrowed}"
           th:object="${book}"
           method="post">
 
         <input type="submit" value="Borrow"/>
-        <!--<h4 th:inline="text"> Sample text [[${book.status}]] </h4>-->
-    </form>
+        &lt;!&ndash;<h4 th:inline="text"> Sample text [[${book.status}]] </h4>&ndash;&gt;
+    </form>-->
 </div>
 
 

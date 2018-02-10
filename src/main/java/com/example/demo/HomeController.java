@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -48,30 +45,43 @@ public class HomeController {
         return "redirect:/add";
     }
 
-    @RequestMapping("/borrowed")
+    @RequestMapping("/borrow")
     public String showBorrowed(Model model){
-        model.addAttribute("books", bookRepository.findAll());
-
+        model.addAttribute("availablebooks", bookRepository.findAllByIsBorrowed(false));
         return "borrowedList";
     }
 
-    @PostMapping("/confBorrowed")
-    public String confBorrowed(@Valid @ModelAttribute("book") Book book, BindingResult result){
-        if(result.hasErrors()){
-            return "borrowedList";
-        }
-        book.setIsBorrowed(TRUE);
-        bookRepository.save(book);
+    @RequestMapping("/confBorrowed/{id}")
+    public String confBorrowed(@PathVariable("id") long id, Model model){
+
+        Book oldBook = bookRepository.findOne(new Long(id));
+        oldBook.setIsBorrowed(true);
+        bookRepository.save(oldBook);
+
+        /*model.addAttribute("book", bookRepository.findOne(id));*/
+
 
         return "ConfirmedBorrowed";
     }
 
-
-    @RequestMapping("/returned")
+    @RequestMapping("/return")
     public String showReturned(Model model){
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("reservedbooks", bookRepository.findAllByIsBorrowed(true));
 
         return "returnedList";
+    }
+
+    @RequestMapping("/confReturned/{id}")
+    public String confReturned(@PathVariable("id") long id, Model model){
+
+        Book oldBook = bookRepository.findOne(new Long(id));
+        oldBook.setIsBorrowed(false);
+        bookRepository.save(oldBook);
+
+        /*model.addAttribute("book", bookRepository.findOne(id));*/
+
+
+        return "ConfirmedReturned";
     }
 
     @PostMapping("/confReturned")
@@ -79,6 +89,13 @@ public class HomeController {
 
         return "ConfirmedReturned";
     }
+
+    /*@RequestMapping("/detail/{id}")
+    public String showStatus(@PathVariable("id") long id, Model model){
+        model.addAttribute("book"), bookRepository.findOne(id);
+        return
+    }*/
+
 
 
 }
