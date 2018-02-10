@@ -41,9 +41,14 @@ public class HomeController {
         if(result.hasErrors()){
             return "bookForm";
         }
+        if(book.getImage().isEmpty()){
+            book.setImage("https://openclipart.org/download/276068/Open-Book-Remixed.svg");
+        }
         bookRepository.save(book);
         return "redirect:/add";
     }
+
+
 
     @RequestMapping("/borrow")
     public String showBorrowed(Model model){
